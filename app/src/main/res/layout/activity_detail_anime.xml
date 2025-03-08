@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detail.DetailAnimeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/detail_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:fitsSystemWindows="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/Theme.AppBarOverlay" >
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@id/toolbar" >
+
+            <ImageView
+                android:id="@+id/iv_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image"
+                android:scaleType="centerCrop" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.PopupOverlay" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorSecondary"
+        app:layout_anchor="@id/detail_app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_app_bar"
+        app:layout_constraintEnd_toEndOf="@+id/detail_app_bar"
+        android:src="@drawable/baseline_favorite_border_24"
+        android:contentDescription="@string/favorite" />
+
+    <TextView
+        android:id="@+id/tv_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/title"
+        android:maxLines="2"
+        android:textStyle="normal"
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_app_bar"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="36dp" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_title"
+        android:text="@string/score"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/tv_btn_studio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/studio"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_score"
+        app:layout_constraintTop_toTopOf="@+id/tv_score"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_score"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_aired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aired"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_btn_studio"
+        app:layout_constraintTop_toTopOf="@id/tv_btn_studio"
+        app:layout_constraintBottom_toBottomOf="@id/tv_btn_studio"/>
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_aired"
+        app:layout_constraintTop_toTopOf="@+id/tv_aired"
+        app:layout_constraintBottom_toBottomOf="@id/tv_aired" />
+
+    <TextView
+        android:id="@+id/tv_synopsis_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/synopsis"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score" />
+
+    <TextView
+        android:id="@+id/tv_content_synopsis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:text="@string/synopsis"
+        app:layout_constraintTop_toBottomOf="@+id/tv_synopsis_title"
+        android:layout_marginTop="6dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

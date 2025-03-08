@@ -1,9 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyAnimeList" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.MyAnimeList" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
     </style>
 
-    <style name="Theme.MyAnimeList" parent="Base.Theme.MyAnimeList" />
+    <style name="Theme.MyAnimeList.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="Theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 </resources>
