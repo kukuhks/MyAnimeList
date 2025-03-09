@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ks.myanimelist.core.data.source.local.entity.AnimeEntity
 import com.ks.myanimelist.core.domain.model.Anime
 import com.ks.myanimelist.databinding.ItemListAnimeBinding
 
 class AnimeAdapter : ListAdapter<Anime, AnimeAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    var onItemClick: ((AnimeEntity) -> Unit)? = null
+    var onItemClick: ((Anime) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ListViewHolder(
@@ -31,13 +30,12 @@ class AnimeAdapter : ListAdapter<Anime, AnimeAdapter.ListViewHolder>(DIFF_CALLBA
                 .load(data.imageUrl)
                 .into(binding.ivItemImage)
             binding.tvItemTitle.text = data.title
-            binding.tvItemSubtitle.text = data.rating
+//            binding.tvItemSubtitle.text = data.rating
         }
-    }
-
-    init {
-        itemView.setOnClickListener {
-            onItemClick?.invoke(getItem(bindingAdapterPosition))
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke(getItem(bindingAdapterPosition))
+            }
         }
     }
 

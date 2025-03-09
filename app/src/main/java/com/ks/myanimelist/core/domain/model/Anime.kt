@@ -12,7 +12,7 @@ data class Anime(
     val synopsis: String,
     val aired: String,
     val score: Double,
-    val studio: String,
+    val studios: List<String>,
     val rating: String,
     val isFavorite: Boolean
 ) : Parcelable

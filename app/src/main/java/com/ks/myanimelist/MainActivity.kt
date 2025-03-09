@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val toolbar: MaterialToolbar = binding.topBar
+        val toolbar = binding.topBar
         setSupportActionBar(toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment_bottom_nav)

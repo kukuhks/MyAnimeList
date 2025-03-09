@@ -13,10 +13,10 @@ object DataMapper {
                 imageUrl = it.images.jpg.imageUrl,
                 title = it.title,
                 type = it.type,
-                aired = it.aired.date,
+                aired = it.aired.date ?: "",
                 score = it.score,
-                studio = it.studio.name,
-                synopsis = it.synopsis,
+                studios = it.studios.joinToString { studio -> studio.name },
+                synopsis = it.synopsis ?: "",
                 rating = it.rating,
                 isFavorite = false
             )
@@ -34,7 +34,7 @@ object DataMapper {
                 type = it.type,
                 aired = it.aired,
                 score = it.score,
-                studio = it.studio,
+                studios = it.studios,
                 synopsis = it.synopsis,
                 rating = it.rating,
                 isFavorite = it.isFavorite
@@ -48,7 +48,7 @@ object DataMapper {
         type = input.type,
         aired = input.aired,
         score = input.score,
-        studio = input.studio,
+        studios = input.studios,
         synopsis = input.synopsis,
         rating = input.rating,
         isFavorite = input.isFavorite

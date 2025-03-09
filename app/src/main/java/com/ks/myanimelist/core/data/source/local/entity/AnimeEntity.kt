@@ -30,8 +30,8 @@ data class AnimeEntity (
     @ColumnInfo(name = "score")
     val score: Double,
 
-    @ColumnInfo(name = "studio")
-    val studio: String,
+    @ColumnInfo(name = "studios")
+    val studios: String,
 
     @ColumnInfo(name = "rating")
     val rating: String,
