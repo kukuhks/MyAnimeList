@@ -13,4 +13,6 @@
     <string name="aired">Aired</string>
     <string name="type">type</string>
     <string name="synopsis">Synopsis</string>
+    <string name="episodes">Episodes</string>
+    <string name="year">Year</string>
 </resources>

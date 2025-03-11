@@ -18,8 +18,8 @@ data class AnimeResponse(
     @field:SerializedName("synopsis")
     val synopsis: String?,
 
-    @field:SerializedName("aired")
-    val aired: AiredResponse,
+    @field:SerializedName("episodes")
+    val episodes: Int,
 
     @field:SerializedName("score")
     val score: Double,
@@ -27,8 +27,8 @@ data class AnimeResponse(
     @field:SerializedName("rating")
     val rating: String,
 
-    @field:SerializedName("studios")
-    val studios: List<StudioResponse>
+    @field:SerializedName("year")
+    val year: Int
 )
 
 data class ImagesResponse(
@@ -39,14 +39,4 @@ data class ImagesResponse(
 data class JpgResponse(
     @field:SerializedName("image_url")
     val imageUrl: String
-)
-
-data class AiredResponse(
-    @field:SerializedName("date")
-    val date: String?
-)
-
-data class StudioResponse(
-    @field:SerializedName("name")
-    val name: String
 )

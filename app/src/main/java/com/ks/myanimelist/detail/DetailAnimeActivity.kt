@@ -2,18 +2,13 @@ package com.ks.myanimelist.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.IntentCompat.getParcelableExtra
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.ks.myanimelist.R
-import com.ks.myanimelist.core.data.source.local.entity.AnimeEntity
 import com.ks.myanimelist.core.domain.model.Anime
 import com.ks.myanimelist.core.ui.ViewModelFactory
 import com.ks.myanimelist.databinding.ActivityDetailAnimeBinding
@@ -44,17 +39,14 @@ class DetailAnimeActivity : AppCompatActivity() {
     private fun showDetailAnime(detailAnime: Anime?) {
         detailAnime?.let {
             supportActionBar?.title = detailAnime.title
-            Log.d("DetailAnimeActivity", "Anime Title: ${detailAnime.title}")
             Glide.with(this@DetailAnimeActivity)
                 .load(detailAnime.imageUrl)
                 .into(binding.ivDetailImage)
-            binding.contentDetailAnime.tvScore.text = detailAnime.score.toString()
-            binding.contentDetailAnime.tvStudio.text = detailAnime.studio
-            binding.contentDetailAnime.tvAired.text = detailAnime.aired
+            binding.contentDetailAnime.tvScore.text = "⭐ " + detailAnime.score.toString()
+            binding.contentDetailAnime.tvEpisodes.text = detailAnime.episodes.toString() + " Episodes"
+            binding.contentDetailAnime.tvYear.text = detailAnime.year.toString()
             binding.contentDetailAnime.tvType.text = detailAnime.type
             binding.contentDetailAnime.tvContentSynopsis.text = detailAnime.synopsis
-            Log.d("DetailAnime", "Name Studio: ${detailAnime.studio}")
-            Log.d("DetailAnime", "Date Aired: ${detailAnime.aired}")
 
             var statusFavorite = detailAnime.isFavorite
             setStatusFavorite(statusFavorite)

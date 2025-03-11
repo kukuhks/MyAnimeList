@@ -24,14 +24,14 @@ data class AnimeEntity (
     @ColumnInfo(name = "synopsis")
     val synopsis: String,
 
-    @ColumnInfo(name = "aired")
-    val aired: String,
+    @ColumnInfo(name = "episodes")
+    val episodes: Int,
 
     @ColumnInfo(name = "score")
     val score: Double,
 
-    @ColumnInfo(name = "studios")
-    val studios: String,
+    @ColumnInfo(name = "year")
+    val year: Int,
 
     @ColumnInfo(name = "rating")
     val rating: String,

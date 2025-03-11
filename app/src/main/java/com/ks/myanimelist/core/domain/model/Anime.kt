@@ -2,6 +2,7 @@ package com.ks.myanimelist.core.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.time.Year
 
 @Parcelize
 data class Anime(
@@ -10,9 +11,9 @@ data class Anime(
     val title: String,
     val type: String,
     val synopsis: String,
-    val aired: String,
+    val episodes: Int,
     val score: Double,
-    val studios: List<String>,
+    val year: Int,
     val rating: String,
     val isFavorite: Boolean
 ) : Parcelable
