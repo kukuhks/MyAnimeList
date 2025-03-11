@@ -7,6 +7,11 @@ import com.ks.myanimelist.core.data.source.remote.network.ApiResponse
 import com.ks.myanimelist.core.data.source.remote.network.ApiService
 import com.ks.myanimelist.core.data.source.remote.response.AnimeResponse
 import com.ks.myanimelist.core.data.source.remote.response.ListAnimeResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import okhttp3.Dispatcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,22 +26,23 @@ class RemoteDataSource private constructor(private val apiService: ApiService){
             }
     }
 
-    fun getAllAnime(): LiveData<ApiResponse<List<AnimeResponse>>> {
+    suspend fun getAllAnime(): Flow<ApiResponse<List<AnimeResponse>>> {
         val resultData = MutableLiveData<ApiResponse<List<AnimeResponse>>>()
 
 //        get data from remote API
-        val client = apiService.getList()
-        client.enqueue(object : Callback<ListAnimeResponse> {
-            override fun onResponse(call: Call<ListAnimeResponse>, response: Response<ListAnimeResponse>) {
-                val dataArray = response.body()?.listAnime
-                resultData.value = if (dataArray != null) ApiResponse.Success(dataArray) else ApiResponse.Empty
+        return flow{
+            try {
+                val response = apiService.getList()
+                val dataArray = response.listAnime
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(dataArray))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
             }
-
-            override fun onFailure(call: Call<ListAnimeResponse>, t: Throwable) {
-                resultData.value = ApiResponse.Error(t.message.toString())
-                Log.e("RemoteDataSource", t.message.toString())
-            }
-        })
-        return resultData
+        }.flowOn(Dispatchers.IO)
     }
 }

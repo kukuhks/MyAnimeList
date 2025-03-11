@@ -1,11 +1,11 @@
 package com.ks.myanimelist.core.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.ks.myanimelist.core.data.source.Resource
 import com.ks.myanimelist.core.domain.model.Anime
+import kotlinx.coroutines.flow.Flow
 
 interface IAnimeRepository {
-    fun getAllAnime(): LiveData<Resource<List<Anime>>>
-    fun getFavoriteAnime(): LiveData<List<Anime>>
+    fun getAllAnime(): Flow<Resource<List<Anime>>>
+    fun getFavoriteAnime(): Flow<List<Anime>>
     fun setFavoriteAnime(anime: Anime, state: Boolean)
 }

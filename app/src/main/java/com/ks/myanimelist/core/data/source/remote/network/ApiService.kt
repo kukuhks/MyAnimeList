@@ -8,5 +8,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("seasons/now")
-    fun getList(): Call<ListAnimeResponse>
+    suspend fun getList(): ListAnimeResponse
 }

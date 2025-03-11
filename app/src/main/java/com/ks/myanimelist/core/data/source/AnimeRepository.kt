@@ -1,7 +1,5 @@
 package com.ks.myanimelist.core.data.source
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.ks.myanimelist.core.data.source.local.LocalDataSource
 import com.ks.myanimelist.core.data.source.remote.RemoteDataSource
 import com.ks.myanimelist.core.data.source.remote.network.ApiResponse
@@ -10,6 +8,8 @@ import com.ks.myanimelist.core.domain.model.Anime
 import com.ks.myanimelist.core.domain.repository.IAnimeRepository
 import com.ks.myanimelist.core.utils.AppExecutors
 import com.ks.myanimelist.core.utils.DataMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class AnimeRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -30,9 +30,9 @@ class AnimeRepository private constructor(
             }
     }
 
-    override fun getAllAnime(): LiveData<Resource<List<Anime>>> =
-        object : NetworkBoundResource<List<Anime>, List<AnimeResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Anime>> {
+    override fun getAllAnime(): Flow<Resource<List<Anime>>> =
+        object : NetworkBoundResource<List<Anime>, List<AnimeResponse>>() {
+            override fun loadFromDB(): Flow<List<Anime>> {
                 return localDataSource.getAllAnime().map {
                     DataMapper.mapEntitiesToDomain(it)
                 }
@@ -41,16 +41,16 @@ class AnimeRepository private constructor(
             override fun shouldFetch(data: List<Anime>?): Boolean =
                 data.isNullOrEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<AnimeResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<AnimeResponse>>> =
                 remoteDataSource.getAllAnime()
 
-            override fun saveCallResult(data: List<AnimeResponse>) {
+            override suspend fun saveCallResult(data: List<AnimeResponse>) {
                 val animeList = DataMapper.mapResponseToEntities(data)
                 localDataSource.insertAnime(animeList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getFavoriteAnime(): LiveData<List<Anime>> {
+    override fun getFavoriteAnime(): Flow<List<Anime>> {
         return localDataSource.getFavoriteAnime().map {
             DataMapper.mapEntitiesToDomain(it)
         }
