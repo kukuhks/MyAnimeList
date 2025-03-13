@@ -2,23 +2,21 @@ package com.ks.myanimelist.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ks.myanimelist.R
 import com.ks.myanimelist.core.data.source.Resource
 import com.ks.myanimelist.core.ui.AnimeAdapter
-import com.ks.myanimelist.core.ui.ViewModelFactory
 import com.ks.myanimelist.databinding.FragmentHomeBinding
 import com.ks.myanimelist.detail.DetailAnimeActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -42,9 +40,6 @@ class HomeFragment : Fragment() {
                 intent.putExtra(DetailAnimeActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.anime.observe(viewLifecycleOwner) { anime ->
                 if(anime != null) {
