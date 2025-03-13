@@ -10,5 +10,5 @@ data class ListAnimeResponse(
 //    val message: String,
 
     @field:SerializedName("data")
-    val listAnime: List<AnimeResponse>
+    val listAnime: List<com.ks.myanimelist.core.data.source.remote.response.AnimeResponse>
 )

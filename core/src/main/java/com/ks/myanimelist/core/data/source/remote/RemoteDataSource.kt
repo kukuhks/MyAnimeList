@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource (private val apiService: ApiService){
 
-    suspend fun getAllAnime(): Flow<ApiResponse<List<AnimeResponse>>> {
+    suspend fun getAllAnime(): Flow<com.ks.myanimelist.core.data.source.remote.network.ApiResponse<List<com.ks.myanimelist.core.data.source.remote.response.AnimeResponse>>> {
 //        MutableLiveData<ApiResponse<List<AnimeResponse>>>()
 
 //        get data from remote API
@@ -21,12 +21,12 @@ class RemoteDataSource (private val apiService: ApiService){
                 val response = apiService.getList()
                 val dataArray = response.listAnime
                 if (dataArray.isNotEmpty()) {
-                    emit(ApiResponse.Success(dataArray))
+                    emit(com.ks.myanimelist.core.data.source.remote.network.ApiResponse.Success(dataArray))
                 } else {
-                    emit(ApiResponse.Empty)
+                    emit(com.ks.myanimelist.core.data.source.remote.network.ApiResponse.Empty)
                 }
             } catch (e: Exception) {
-                emit(ApiResponse.Error(e.toString()))
+                emit(com.ks.myanimelist.core.data.source.remote.network.ApiResponse.Error(e.toString()))
                 Log.e("RemoteDataSource", e.toString())
             }
         }.flowOn(Dispatchers.IO)

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyAnimeList</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image">Image</string>
+    <string name="error">Oops.. something went wrong</string>
+    <string name="empty">Empty data</string>
+    <string name="title">Title</string>
+    <string name="studio">Studio</string>
+    <string name="score">Score</string>
+    <string name="aired">Aired</string>
+    <string name="type">type</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="episodes">Episodes</string>
+    <string name="year">Year</string>
+</resources>
