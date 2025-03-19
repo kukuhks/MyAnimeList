@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ks.myanimelist.core.ui.AnimeAdapter
-import com.ks.myanimelist.databinding.FragmentFavoriteBinding
-import com.ks.myanimelist.detail.DetailAnimeActivity
+
+import com.ks.myanimelist.favorite.databinding.FragmentFavoriteBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment() {
@@ -30,24 +30,28 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (activity != null) {
-            val animeAdapter = AnimeAdapter()
-            animeAdapter.onItemClick = { selectedData ->
-                val intent = Intent(requireActivity(), DetailAnimeActivity::class.java)
-                intent.putExtra(DetailAnimeActivity.EXTRA_DATA, selectedData)
-                startActivity(intent)
-            }
+        val adapter = AnimeAdapter()
+        adapter.onItemClick = { selectedData ->
+//            val intent = Intent(requireActivity(), DetailAnimeActivity::class.java)
+//            intent.putExtra(DetailAnimeActivity.EXTRA_DATA, selectedData)
+//            startActivity(intent)
 
-            favoriteViewModel.anime.observe(viewLifecycleOwner) { anime ->
-                animeAdapter.submitList(anime)
-                binding.viewEmpty.root.visibility = if (anime.isNotEmpty()) View.GONE else View.VISIBLE
+            favoriteViewModel.anime.observe(viewLifecycleOwner) { dataAnime ->
+                adapter.submitList(dataAnime)
+                binding.viewEmpty.root.visibility =
+                    if (dataAnime.isNotEmpty()) View.GONE else View.VISIBLE
             }
 
             with(binding.rvAnime) {
                 layoutManager = GridLayoutManager(context, 2)
                 setHasFixedSize(true)
-                adapter = animeAdapter
+                this.adapter = adapter
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

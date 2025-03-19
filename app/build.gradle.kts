@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -38,10 +39,12 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
 
+    val nav_version = "2.8.9"
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -52,6 +55,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
     implementation(libs.recyclerview)
     implementation(libs.glide)
@@ -65,9 +69,16 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.koin.android)
 
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.navigation.navigation.dynamic.features.fragment)
+    implementation(libs.kotlinx.serialization.json)
+
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     androidTestImplementation(libs.room.testing)
 
     implementation(project(":core"))
+    implementation(project(":favorite"))
 }

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_favorite
+                R.id.navigation_home, com.ks.myanimelist.favorite.R.id.navigation_favorite
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

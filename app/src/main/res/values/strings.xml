@@ -15,4 +15,5 @@
     <string name="synopsis">Synopsis</string>
     <string name="episodes">Episodes</string>
     <string name="year">Year</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
