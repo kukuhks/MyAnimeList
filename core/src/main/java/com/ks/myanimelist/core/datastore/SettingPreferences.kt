@@ -13,7 +13,9 @@ import kotlinx.coroutines.flow.map
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "setting")
 class SettingPreferences(private val dataStore: Context) {
 
-    private val DARK_MODE_KEY = booleanPreferencesKey("theme_setting")
+    companion object {
+        private val DARK_MODE_KEY = booleanPreferencesKey("theme_setting")
+    }
 
     fun getThemeSetting(): Flow<Boolean> {
         return dataStore.dataStore.data.map { preferences ->

@@ -30,7 +30,6 @@ class AnimeAdapter : ListAdapter<Anime, AnimeAdapter.ListViewHolder>(DIFF_CALLBA
                 .load(data.imageUrl)
                 .into(binding.ivItemImage)
             binding.tvItemTitle.text = data.title
-//            binding.tvItemSubtitle.text = data.rating
         }
         init {
             itemView.setOnClickListener {

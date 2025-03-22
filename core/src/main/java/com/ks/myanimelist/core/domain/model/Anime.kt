@@ -2,7 +2,6 @@ package com.ks.myanimelist.core.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.time.Year
 
 @Parcelize
 data class Anime(

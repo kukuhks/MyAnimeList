@@ -5,7 +5,7 @@ import com.ks.myanimelist.core.data.source.remote.response.AnimeResponse
 import com.ks.myanimelist.core.domain.model.Anime
 
 object DataMapper {
-    fun mapResponseToEntities(input: List<com.ks.myanimelist.core.data.source.remote.response.AnimeResponse>): List<AnimeEntity> {
+    fun mapResponseToEntities(input: List<AnimeResponse>): List<AnimeEntity> {
         val animeList = ArrayList<AnimeEntity>()
         input.map {
             val anime = AnimeEntity(

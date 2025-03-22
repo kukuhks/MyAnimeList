@@ -18,7 +18,7 @@ class AnimeRepository (
 ) : IAnimeRepository {
 
     override fun getAllAnime(): Flow<Resource<List<Anime>>> =
-        object : com.ks.myanimelist.core.data.source.NetworkBoundResource<List<Anime>, List<com.ks.myanimelist.core.data.source.remote.response.AnimeResponse>>() {
+        object : NetworkBoundResource<List<Anime>, List<AnimeResponse>>() {
             override fun loadFromDB(): Flow<List<Anime>> {
                 return localDataSource.getAllAnime().map {
                     DataMapper.mapEntitiesToDomain(it)
@@ -28,10 +28,10 @@ class AnimeRepository (
             override fun shouldFetch(data: List<Anime>?): Boolean =
                 data.isNullOrEmpty()
 
-            override suspend fun createCall(): Flow<com.ks.myanimelist.core.data.source.remote.network.ApiResponse<List<com.ks.myanimelist.core.data.source.remote.response.AnimeResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<AnimeResponse>>> =
                 remoteDataSource.getAllAnime()
 
-            override suspend fun saveCallResult(data: List<com.ks.myanimelist.core.data.source.remote.response.AnimeResponse>) {
+            override suspend fun saveCallResult(data: List<AnimeResponse>) {
                 val animeList = DataMapper.mapResponseToEntities(data)
                 localDataSource.insertAnime(animeList)
             }

@@ -1,7 +1,6 @@
 package com.ks.myanimelist.setting
 
 import android.os.Bundle
-import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.ks.myanimelist.di.settingModule
@@ -36,13 +35,5 @@ class SettingActivity : AppCompatActivity() {
             }
             binding.switchTheme.isChecked = isDarkModeActive
         }
-
-//        binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-//            settingViewModel.saveThemeSetting(isChecked)
-//            AppCompatDelegate.setDefaultNightMode(
-//                if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
-//                else AppCompatDelegate.MODE_NIGHT_NO
-//            )
-//        }
     }
 }

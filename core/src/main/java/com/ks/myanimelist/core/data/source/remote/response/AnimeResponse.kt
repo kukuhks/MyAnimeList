@@ -7,7 +7,7 @@ data class AnimeResponse(
     val malId: Int,
 
     @field:SerializedName("images")
-    val images: com.ks.myanimelist.core.data.source.remote.response.ImagesResponse,
+    val images: ImagesResponse,
 
     @field:SerializedName("title_english")
     val title: String,
@@ -33,7 +33,7 @@ data class AnimeResponse(
 
 data class ImagesResponse(
     @field:SerializedName("jpg")
-    val jpg: com.ks.myanimelist.core.data.source.remote.response.JpgResponse
+    val jpg: JpgResponse
 )
 
 data class JpgResponse(

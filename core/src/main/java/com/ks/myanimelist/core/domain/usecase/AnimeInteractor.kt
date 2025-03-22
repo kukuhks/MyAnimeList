@@ -1,7 +1,5 @@
 package com.ks.myanimelist.core.domain.usecase
 
-import androidx.lifecycle.LiveData
-import com.ks.myanimelist.core.data.source.Resource
 import com.ks.myanimelist.core.domain.model.Anime
 import com.ks.myanimelist.core.domain.repository.IAnimeRepository
 
