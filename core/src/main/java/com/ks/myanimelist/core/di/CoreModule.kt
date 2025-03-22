@@ -6,6 +6,7 @@ import com.ks.myanimelist.core.data.source.local.LocalDataSource
 import com.ks.myanimelist.core.data.source.local.room.AnimeDatabase
 import com.ks.myanimelist.core.data.source.remote.RemoteDataSource
 import com.ks.myanimelist.core.data.source.remote.network.ApiService
+import com.ks.myanimelist.core.datastore.SettingPreferences
 import com.ks.myanimelist.core.domain.repository.IAnimeRepository
 import com.ks.myanimelist.core.utils.AppExecutors
 import okhttp3.OkHttpClient
@@ -46,4 +47,8 @@ val repositoryModule = module {
     single { RemoteDataSource(get()) }
     single { AppExecutors() }
     single<IAnimeRepository> { AnimeRepository(get(), get(), get()) }
+}
+
+val datastoreModule = module {
+    single { SettingPreferences(androidContext()) }
 }

@@ -2,9 +2,9 @@ package com.ks.myanimelist
 
 import android.app.Application
 import com.ks.myanimelist.core.di.databaseModule
+import com.ks.myanimelist.core.di.datastoreModule
 import com.ks.myanimelist.core.di.networkModule
 import com.ks.myanimelist.core.di.repositoryModule
-import com.ks.myanimelist.di.favoriteModule
 import com.ks.myanimelist.di.useCaseModule
 import com.ks.myanimelist.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -20,12 +20,12 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(
                 listOf(
-                    com.ks.myanimelist.core.di.databaseModule,
-                    com.ks.myanimelist.core.di.networkModule,
-                    com.ks.myanimelist.core.di.repositoryModule,
+                    databaseModule,
+                    networkModule,
+                    repositoryModule,
                     useCaseModule,
                     viewModelModule,
-                    favoriteModule
+                    datastoreModule,
                 )
             )
         }

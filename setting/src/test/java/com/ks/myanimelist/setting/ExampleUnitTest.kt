@@ -1,4 +1,4 @@
-package com.ks.myanimelist.favorite
+package com.ks.myanimelist.setting
 
 import org.junit.Test
 

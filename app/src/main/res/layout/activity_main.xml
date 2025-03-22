@@ -12,13 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="MyAnimeList"
+        app:menu="@menu/appbar_menu"
         app:titleTextColor="@color/white"
         android:background="@color/colorPrimary"
         tools:ignore="MissingConstraints" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_bottom_nav"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:name="androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"

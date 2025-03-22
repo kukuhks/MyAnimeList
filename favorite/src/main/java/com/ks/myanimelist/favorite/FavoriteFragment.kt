@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ks.myanimelist.core.ui.AnimeAdapter
+import com.ks.myanimelist.detail.DetailAnimeActivity
+import com.ks.myanimelist.di.favoriteModule
 
 import com.ks.myanimelist.favorite.databinding.FragmentFavoriteBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoriteFragment : Fragment() {
 
@@ -23,6 +26,7 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        loadKoinModules(favoriteModule)
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,21 +36,20 @@ class FavoriteFragment : Fragment() {
 
         val adapter = AnimeAdapter()
         adapter.onItemClick = { selectedData ->
-//            val intent = Intent(requireActivity(), DetailAnimeActivity::class.java)
-//            intent.putExtra(DetailAnimeActivity.EXTRA_DATA, selectedData)
-//            startActivity(intent)
+            val intent = Intent(requireActivity(), DetailAnimeActivity::class.java)
+            intent.putExtra(DetailAnimeActivity.EXTRA_DATA, selectedData)
+            startActivity(intent)
+        }
+        favoriteViewModel.anime.observe(viewLifecycleOwner) { dataAnime ->
+            adapter.submitList(dataAnime)
+            binding.viewEmpty.root.visibility =
+                if (dataAnime.isNotEmpty()) View.GONE else View.VISIBLE
+        }
 
-            favoriteViewModel.anime.observe(viewLifecycleOwner) { dataAnime ->
-                adapter.submitList(dataAnime)
-                binding.viewEmpty.root.visibility =
-                    if (dataAnime.isNotEmpty()) View.GONE else View.VISIBLE
-            }
-
-            with(binding.rvAnime) {
-                layoutManager = GridLayoutManager(context, 2)
-                setHasFixedSize(true)
-                this.adapter = adapter
-            }
+        with(binding.rvAnime) {
+            layoutManager = GridLayoutManager(context, 2)
+            setHasFixedSize(true)
+            this.adapter = adapter
         }
     }
 

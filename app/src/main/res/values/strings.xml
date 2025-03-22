@@ -16,4 +16,6 @@
     <string name="episodes">Episodes</string>
     <string name="year">Year</string>
     <string name="title_favorite">Favorite</string>
+    <string name="title_setting">Setting</string>
+    <string name="setting">Setting</string>
 </resources>
