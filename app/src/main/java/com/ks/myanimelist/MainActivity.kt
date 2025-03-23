@@ -6,18 +6,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.ks.myanimelist.core.datastore.SettingPreferences
 import com.ks.myanimelist.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.get
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,8 +48,6 @@ class MainActivity : AppCompatActivity() {
                 binding.topBar.title = destination.label
             }
         }
-
-        setupTheme()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,19 +63,6 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun setupTheme() {
-        val settingPreferences: SettingPreferences = get()
-        CoroutineScope(Dispatchers.Main).launch {
-            settingPreferences.getThemeSetting().collect { isDarkModeActive ->
-                if (isDarkModeActive) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
-            }
         }
     }
 }

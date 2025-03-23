@@ -2,6 +2,7 @@ package com.ks.myanimelist.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.IntentCompat.getParcelableExtra
@@ -21,28 +22,26 @@ class DetailAnimeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailAnimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
 
         val detailAnime = getParcelableExtra(intent, EXTRA_DATA, Anime::class.java)
         showDetailAnime(detailAnime)
 
-        val collapsingToolbar = binding.detailAppBar.findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        collapsingToolbar.title = detailAnime?.title
+        val tvTitle = findViewById<TextView>(R.id.tv_title)
+        tvTitle.text = detailAnime?.title
 
     }
 
     @SuppressLint("SetTextI18n")
     private fun showDetailAnime(detailAnime: Anime?) {
         detailAnime?.let {
-            supportActionBar?.title = detailAnime.title
             Glide.with(this@DetailAnimeActivity)
                 .load(detailAnime.imageUrl)
                 .into(binding.ivDetailImage)
-            binding.contentDetailAnime.tvScore.text = "⭐ " + detailAnime.score.toString()
-            binding.contentDetailAnime.tvEpisodes.text = detailAnime.episodes.toString() + " Episodes"
-            binding.contentDetailAnime.tvYear.text = detailAnime.year.toString()
-            binding.contentDetailAnime.tvType.text = detailAnime.type
-            binding.contentDetailAnime.tvContentSynopsis.text = detailAnime.synopsis
+            binding.tvScore.text = "⭐ " + detailAnime.score.toString()
+            binding.tvEpisodes.text = detailAnime.episodes.toString() + " Episodes"
+            binding.tvYear.text = detailAnime.year.toString()
+            binding.tvType.text = detailAnime.type
+            binding.tvContentSynopsis.text = detailAnime.synopsis
 
             var statusFavorite = detailAnime.isFavorite
             setStatusFavorite(statusFavorite)

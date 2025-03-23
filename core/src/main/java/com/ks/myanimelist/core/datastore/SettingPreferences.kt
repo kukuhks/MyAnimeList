@@ -24,7 +24,7 @@ class SettingPreferences(private val dataStore: Context) {
             .distinctUntilChanged()
     }
 
-    suspend fun saveThemeSetting(enabled: Boolean) {
+     suspend fun saveThemeSetting(enabled: Boolean) {
         dataStore.dataStore.edit { preferences ->
             preferences[DARK_MODE_KEY] = enabled
         }

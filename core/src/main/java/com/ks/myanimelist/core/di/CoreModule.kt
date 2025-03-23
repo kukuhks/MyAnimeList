@@ -2,12 +2,14 @@ package com.ks.myanimelist.core.di
 
 import androidx.room.Room
 import com.ks.myanimelist.core.data.source.AnimeRepository
+import com.ks.myanimelist.core.data.source.SettingRepository
 import com.ks.myanimelist.core.data.source.local.LocalDataSource
 import com.ks.myanimelist.core.data.source.local.room.AnimeDatabase
 import com.ks.myanimelist.core.data.source.remote.RemoteDataSource
 import com.ks.myanimelist.core.data.source.remote.network.ApiService
 import com.ks.myanimelist.core.datastore.SettingPreferences
 import com.ks.myanimelist.core.domain.repository.IAnimeRepository
+import com.ks.myanimelist.core.domain.repository.ISettingRepository
 import com.ks.myanimelist.core.utils.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -50,5 +52,6 @@ val repositoryModule = module {
 }
 
 val datastoreModule = module {
+    single<ISettingRepository> { SettingRepository(get()) }
     single { SettingPreferences(androidContext()) }
 }

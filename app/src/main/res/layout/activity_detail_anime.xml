@@ -1,57 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".detail.DetailAnimeActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/detail_app_bar"
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Theme.AppBarOverlay" >
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <ImageView
+            android:id="@+id/iv_detail_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@id/toolbar" >
+            android:layout_height="360dp"
+            android:contentDescription="@string/image"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <ImageView
-                android:id="@+id/iv_detail_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/image"
-                android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:maxLines="4"
+            android:textStyle="bold"
+            android:textAlignment="viewStart"
+            app:layout_collapseMode="none"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_detail_image"
+            android:ellipsize="end" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.PopupOverlay" />
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_image"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"/>
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+        <TextView
+            android:id="@+id/tv_episodes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/episodes"
+            app:layout_constraintStart_toEndOf="@+id/tv_score"
+            app:layout_constraintTop_toTopOf="@+id/tv_score"
+            android:layout_marginStart="36dp"
+            android:textSize="14sp" />
 
-    <include
-        android:id="@+id/content_detail_anime"
-        layout="@layout/content_detail_anime" />
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/year"
+            app:layout_constraintStart_toEndOf="@+id/tv_episodes"
+            app:layout_constraintTop_toTopOf="@+id/tv_episodes"
+            android:layout_marginStart="36dp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorTertiary"
-        app:layout_anchor="@id/detail_app_bar"
-        app:layout_anchorGravity="bottom|end"
-        android:src="@drawable/baseline_favorite_border_24"
-        android:contentDescription="@string/favorite" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_year"
+            app:layout_constraintTop_toTopOf="@id/tv_year"
+            android:layout_marginStart="36dp" />
+
+        <TextView
+            android:id="@+id/tv_synopsis_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/synopsis"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_score"
+            app:layout_constraintStart_toStartOf="@id/tv_score"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_content_synopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/synopsis"
+            app:layout_constraintTop_toBottomOf="@id/tv_synopsis_title"
+            android:layout_marginTop="6dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/colorTertiary"
+            app:layout_anchor="@id/iv_detail_image"
+            app:layout_anchorGravity="bottom|end"
+            android:src="@drawable/baseline_favorite_border_24"
+            android:contentDescription="@string/favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_image"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/detail_app_bar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="360dp"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        android:theme="@style/Theme.AppBarOverlay" >-->
+
+<!--        <com.google.android.material.appbar.CollapsingToolbarLayout-->
+<!--            android:id="@+id/collapsing_toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            app:contentScrim="?attr/colorPrimary"-->
+<!--            app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+<!--            app:titleEnabled="false"-->
+<!--            app:toolbarId="@id/toolbar" >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_detail_image"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:contentDescription="@string/image"-->
+<!--                android:scaleType="centerCrop" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:textSize="24sp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:maxLines="2"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                app:layout_collapseMode="none"-->
+<!--                android:ellipsize="end" />-->
+
+<!--            <androidx.appcompat.widget.Toolbar-->
+<!--                android:id="@+id/toolbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                app:layout_collapseMode="pin"-->
+<!--                app:popupTheme="@style/Theme.PopupOverlay" />-->
+
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
+
+
+</ScrollView>
